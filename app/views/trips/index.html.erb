@@ -1,0 +1,44 @@
+
+
+<h2>
+	Create the dropdown model seperately, do not try and add them as part fo a processed model.<br /><br>
+	In this example Country and City are the dropdown models and Trip is the one to be processed.<br/><br>
+	Make sure you refer to the routes file for some important information !!!!.
+</h2>
+
+
+<h1>Listing trips</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Country</th>
+      <th>City</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @trips.each do |trip| %>
+      <tr>
+        <%
+        # byebug
+        %>
+      	<%  co = Country.find_by(id: trip.country_id) %>
+      	<%  ci = City.find_by(id: trip.city_id)  %>
+      	
+        <td><%= trip.country_id %>, <%= co.name.titleize %></td>
+        <td><%= trip.city_id %>, <%= ci.name.titleize %></td>
+        <td><%= link_to 'Show', trip %></td>
+        <td><%= link_to 'Edit', edit_trip_path(trip) %></td>
+        <td><%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Trip', new_trip_path %>

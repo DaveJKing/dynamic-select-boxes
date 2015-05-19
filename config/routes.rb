@@ -1,4 +1,14 @@
 Dynboxes::Application.routes.draw do
+  
+  # Make sure that the 2 lines below are bfeore the resource statement and in that order
+  get 'trips/update_cities' => 'trips#update_cities' 
+  get 'trips/:id/update_cities' => 'trips#update_cities' 
+  # -----------------------------------
+  
+  
+  
+  resources :trips
+
   get 'welcome/index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -9,6 +19,7 @@ Dynboxes::Application.routes.draw do
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
   get 'welcome/update_cities', as: 'update_cities'
+  
   get 'welcome/show'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)

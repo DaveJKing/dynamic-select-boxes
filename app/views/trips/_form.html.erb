@@ -1,0 +1,31 @@
+<%= form_for(@trip) do |f| %>
+  <% if @trip.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@trip.errors.count, "error") %> prohibited this trip from being saved:</h2>
+
+      <ul>
+      <% @trip.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+  <p>
+  	
+  <!-- The @trip.country_id set the <selected tag -->
+ 
+  <%= f.label "Pick a destination:" %>
+  <%= f.select :country_id, options_for_select(@countries.collect { |country| [country.name.titleize, country.id] },  @trip.country_id), {}, { id: 'countries_select' } %>
+  <%= f.select :city_id, options_for_select(@cities.collect { |city| [city.name.titleize, city.id] }, @trip.city_id ), {}, { id: 'cities_select' } %>
+ 
+  
+</p>
+
+  </div>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
